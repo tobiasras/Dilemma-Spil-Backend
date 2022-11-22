@@ -6,4 +6,5 @@ import lombok.Data;
 public class Player {
     private String name;
     private String fieldOfStudy;
+    private boolean isReady;
 }
