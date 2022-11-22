@@ -11,12 +11,13 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class GameService {
-    GameRepository gameRepository;
+    private GameRepository gameRepository;
 
-    public void createGameLobby(Player player) {
+    public String createGameLobby(Player player) {
         GameLobby gameLobby = new GameLobby();
         gameLobby.getPlayerList().add(player);
         gameRepository.getGameLobbyList().put(gameLobby.getLobbyCode(), gameLobby);
+        return gameLobby.getLobbyCode();
     }
 
     public void joinGameLobby(Player player, String lobbyCode) {
