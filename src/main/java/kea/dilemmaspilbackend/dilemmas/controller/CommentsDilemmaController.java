@@ -1,2 +1,7 @@
-package kea.dilemmaspilbackend.dilemmas.controller;public class CommentsDilemmaController {
+package kea.dilemmaspilbackend.dilemmas.controller;
+
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class CommentsDilemmaController {
 }
