@@ -1,8 +1,6 @@
 package kea.dilemmaspilbackend.dilemmas.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.util.HashSet;
