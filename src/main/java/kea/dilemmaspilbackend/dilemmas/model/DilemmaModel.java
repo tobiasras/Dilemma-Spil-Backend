@@ -15,13 +15,10 @@ public class DilemmaModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    private String daName;
+    private String enName;
     private String daDescription;
     private String enDescription;
-
-    @ManyToOne
-    @JsonBackReference
-    @EqualsAndHashCode.Exclude
-    private CardPackageModel cardPackageModel;
 
     @OneToMany(mappedBy = "dilemmaModelCP")
     private Set<CommentsDilemmaModel> commentsDilemmaModels = new HashSet<>();
@@ -32,5 +29,9 @@ public class DilemmaModel {
     @OneToMany(mappedBy = "dilemmaModelHI")
     private Set<HintsDilemmaModel> hintsDilemmaModels = new HashSet<>();
 
-
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "dilemma_model_card_package_model",
+                joinColumns = @JoinColumn(name = "dilemma_model_id"),
+                inverseJoinColumns = @JoinColumn(name = "card_package_model_id"))
+    private Set<CardPackageModel> cardPackageModels = new HashSet<>();
 }

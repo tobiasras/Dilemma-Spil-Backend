@@ -15,6 +15,9 @@ public class CardPackageModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToMany(mappedBy = "cardPackageModel")
+    private String daName;
+    private String enName;
+
+    @ManyToMany(mappedBy = "cardPackageModels")
     private Set<DilemmaModel> dilemmaModels = new HashSet<>();
 }
