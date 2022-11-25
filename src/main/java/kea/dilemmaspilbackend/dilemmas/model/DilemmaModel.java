@@ -32,4 +32,11 @@ public class DilemmaModel {
                 joinColumns = @JoinColumn(name = "dilemma_model_id"),
                 inverseJoinColumns = @JoinColumn(name = "card_package_model_id"))
     private Set<CardPackageModel> cardPackageModels = new HashSet<>();
+
+
+    public void addComment(CommentsDilemmaModel commentsDilemmaModel){
+                this.commentsDilemmaModels.add(commentsDilemmaModel);
+    }
 }
+
+
