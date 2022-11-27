@@ -37,6 +37,10 @@ public class DilemmaModel {
     public void addComment(CommentsDilemmaModel commentsDilemmaModel){
                 this.commentsDilemmaModels.add(commentsDilemmaModel);
     }
+
+    public void addHint(HintsDilemmaModel hintsDilemmaModel){
+        this.hintsDilemmaModels.add(hintsDilemmaModel);
+    }
 }
 
 

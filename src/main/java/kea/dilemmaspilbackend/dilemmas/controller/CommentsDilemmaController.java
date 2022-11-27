@@ -64,6 +64,7 @@ public class CommentsDilemmaController {
         }
     }
 
+    // uses a dilemmas id to find all comments for that dilemma
     @GetMapping("/api/get/findallfordilemma/{id}/commentsdilemma")
     public ResponseEntity<Set<CommentsDilemmaModel>> findAllForDilemma(@PathVariable() Integer id){
 

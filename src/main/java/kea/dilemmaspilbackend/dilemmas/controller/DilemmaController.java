@@ -56,6 +56,7 @@ public class DilemmaController {
         }
     }
 
+    // doesnt work currently, needs to take care of dependent tables also
     @PostMapping("api/post/delete/{id}/dilemma")
     public ResponseEntity<String> deleteDilemma(@PathVariable() Integer id){
 
