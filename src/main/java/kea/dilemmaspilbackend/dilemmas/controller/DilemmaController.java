@@ -6,10 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @RestController
 public class DilemmaController {
@@ -78,7 +75,9 @@ public class DilemmaController {
     @GetMapping("/api/get/findall/dilemma")
     public ResponseEntity<Set<DilemmaModel>> findAllDilemmas(){
 
-        Set<DilemmaModel> models =  dilemmaService.findAll();
+        Set<DilemmaModel> models =  new HashSet<>();
+
+        dilemmaService.findAll().forEach(models::add);
 
         System.out.println("Found all dilemmas");
 
@@ -102,6 +101,4 @@ public class DilemmaController {
             return ResponseEntity.ok(null);
         }
     }
-
-
 }
