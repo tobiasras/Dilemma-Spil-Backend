@@ -2,7 +2,7 @@ package kea.dilemmaspilbackend.game.service;
 
 import kea.dilemmaspilbackend.game.model.GameLobby;
 import kea.dilemmaspilbackend.game.model.Player;
-import kea.dilemmaspilbackend.game.repository.GameRepository;
+import kea.dilemmaspilbackend.game.controller.repository.GameRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package kea.dilemmaspilbackend.game.repository;
+package kea.dilemmaspilbackend.game.controller.repository;
 
 import kea.dilemmaspilbackend.game.model.GameLobby;
 import lombok.Data;

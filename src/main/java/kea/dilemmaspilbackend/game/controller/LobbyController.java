@@ -3,7 +3,6 @@ package kea.dilemmaspilbackend.game.controller;
 
 import kea.dilemmaspilbackend.game.model.GameLobby;
 import kea.dilemmaspilbackend.game.model.Player;
-import kea.dilemmaspilbackend.game.repository.GameRepository;
 import kea.dilemmaspilbackend.game.response.LobbyResponse;
 import kea.dilemmaspilbackend.game.service.GameService;
 import lombok.AllArgsConstructor;
