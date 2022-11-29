@@ -23,7 +23,7 @@ public class AdminController {
         return new ResponseEntity<>(adminUserService.login(adminUser), HttpStatus.OK);
     }
 
-    @GetMapping("/test")
+    @GetMapping("/admin/test")
     public ResponseEntity sayhi() {
         return new ResponseEntity(HttpStatus.OK);
     }
