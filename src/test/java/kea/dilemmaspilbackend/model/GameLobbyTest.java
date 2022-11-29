@@ -15,6 +15,6 @@ public class GameLobbyTest {
 
     @Test
     public void testCreateLobbyCode(){
-        Assertions.assertEquals(gameLobby.getLobbyCode().length(), 10);
+        Assertions.assertEquals(gameLobby.getLobbyCode().length(), 5);
     }
 }
