@@ -1,22 +1,30 @@
 package kea.dilemmaspilbackend.admin.controller;
 
 import kea.dilemmaspilbackend.admin.model.AdminUser;
+import kea.dilemmaspilbackend.admin.security.JwtResponse;
 import kea.dilemmaspilbackend.admin.service.AdminUserService;
 import lombok.AllArgsConstructor;
+import org.apache.tomcat.util.http.parser.HttpParser;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
+@CrossOrigin
 @AllArgsConstructor
 public class AdminController {
     private AdminUserService adminUserService;
 
     @GetMapping("/login")
-    public ResponseEntity<HttpStatus> login(@RequestBody AdminUser adminUser) {
-        adminUserService.login(adminUser);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<JwtResponse> login(@RequestBody AdminUser adminUser) throws Exception {
+        return new ResponseEntity<>(adminUserService.login(adminUser), HttpStatus.OK);
+    }
+
+    @GetMapping("/test")
+    public ResponseEntity sayhi() {
+        return new ResponseEntity(HttpStatus.OK);
     }
 }
