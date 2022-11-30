@@ -2,7 +2,7 @@ package kea.dilemmaspilbackend.game.service;
 
 import kea.dilemmaspilbackend.game.model.GameLobby;
 import kea.dilemmaspilbackend.game.model.Player;
-import kea.dilemmaspilbackend.game.controller.repository.GameRepository;
+import kea.dilemmaspilbackend.game.repository.GameRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +16,13 @@ public class GameService {
     private GameRepository gameRepository;
 
     public GameLobby createGameLobby(Player player) {
-        GameLobby gameLobby = new GameLobby();
-        gameLobby.getPlayerList().add(player);
-        gameRepository.getGameLobbyList().put(gameLobby.getLobbyCode(), gameLobby);
 
+        GameLobby gameLobby = new GameLobby();
+
+        gameLobby.addPlayer(player);
+
+
+        gameRepository.getGameLobbyList().put(gameLobby.getLobbyCode(), gameLobby);
 
         return gameLobby;
     }
@@ -30,9 +33,7 @@ public class GameService {
     }
 
     public GameLobby fetchGameLobbyFromLobbyCode(String key){
-        Map<String, GameLobby> gameLobbyList = gameRepository.getGameLobbyList();
-
-        return gameLobbyList.get(key);
+        return gameRepository.getGameLobbyList().get(key);
     }
 
     public void removeGameLobby(String lobbyCode) {

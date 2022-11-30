@@ -54,8 +54,18 @@ class GameController {
     public LobbyResponse createLobby(@DestinationVariable String lobby) throws Exception {
 
         LobbyResponse lobbyResponse = new LobbyResponse();
-        lobbyResponse.setGameLobby(gameService.fetchGameLobbyFromLobbyCode(lobby));
+
+        System.out.println(lobby);
+
+        GameLobby gameLobby = gameService.fetchGameLobbyFromLobbyCode(lobby);
+
+        System.out.println(gameLobby);
+
+        lobbyResponse.setGameLobby(gameLobby);
+
         lobbyResponse.setMessage("Created lobby: " + lobby);
+
+        System.out.println(lobbyResponse.getGameLobby());
 
         return lobbyResponse;
     }

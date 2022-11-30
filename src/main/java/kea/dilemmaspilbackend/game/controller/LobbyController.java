@@ -24,6 +24,7 @@ public class LobbyController {
     public ResponseEntity<GameLobby> createLobby(@RequestBody Player player){
         GameLobby gameLobby = gameService.createGameLobby(player);
 
+
         return new ResponseEntity<>(gameLobby, HttpStatus.OK);
     }
 
