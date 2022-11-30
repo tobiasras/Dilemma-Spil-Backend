@@ -1,9 +1,15 @@
 package kea.dilemmaspilbackend.game.controller;
+import kea.dilemmaspilbackend.dilemmas.model.CardPackageModel;
+import kea.dilemmaspilbackend.dilemmas.model.DilemmaModel;
+import kea.dilemmaspilbackend.dilemmas.service.CardPackageService;
 import kea.dilemmaspilbackend.game.model.GameLobby;
 import kea.dilemmaspilbackend.game.model.Player;
 import kea.dilemmaspilbackend.game.response.LobbyResponse;
+import kea.dilemmaspilbackend.game.response.NextCardResponse;
+import kea.dilemmaspilbackend.game.response.StartGameResponse;
 import kea.dilemmaspilbackend.game.service.GameService;
 import lombok.AllArgsConstructor;
+import org.hibernate.Hibernate;
 import org.springframework.core.NestedExceptionUtils;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageExceptionHandler;
@@ -13,6 +19,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.persistence.Lob;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 
 @AllArgsConstructor
@@ -20,6 +29,7 @@ import javax.persistence.Lob;
 class GameController {
 
     private GameService gameService;
+    private CardPackageService cardService;
 
     @MessageExceptionHandler
     @SendTo("/topic/errors")
@@ -49,23 +59,87 @@ class GameController {
     }
 
 
+    @MessageMapping("/game/start/{lobby}")
+    @SendTo("/topic/start/game/{lobby}")
+    public StartGameResponse startGame(@DestinationVariable String lobby){
+        System.out.println("game is starting: " + lobby);
+
+        StartGameResponse startGameResponse = new StartGameResponse();
+
+        GameLobby gameLobby = gameService.fetchGameLobbyFromLobbyCode(lobby);
+
+        Optional<CardPackageModel> byId = cardService.findById(1);
+
+        CardPackageModel cardPackageModel = byId.orElse(null);
+
+        startGameResponse.setCardPackage(cardPackageModel);
+
+
+        gameLobby.setTotalRounds(cardPackageModel.getDilemmaModels().size());
+
+        int currentRound = gameLobby.getCurrentRound();
+
+        if (currentRound == -1){
+            gameLobby.advanceGame();
+        } else {
+            currentRound = 0;
+        }
+
+        startGameResponse.setGameLobby(gameLobby);
+        startGameResponse.setCurrentRound(gameLobby.getCurrentRound());
+        startGameResponse.setMessage("Game is starting");
+
+        return startGameResponse;
+    }
+
+
+
+
+    @MessageMapping("/game/next-card/{lobby}/{nextCard}")
+    @SendTo("/topic/next-card/{lobby}")
+    public NextCardResponse nextCard(@DestinationVariable String lobby, @DestinationVariable int nextCard){
+        NextCardResponse nextCardResponse = new NextCardResponse();
+
+        GameLobby gameLobby = gameService.fetchGameLobbyFromLobbyCode(lobby);
+
+
+
+        int totalRounds = gameLobby.getTotalRounds();
+
+        if (!(nextCard > totalRounds -1)){
+            gameService.setCurrentRound(lobby, nextCard);
+
+            nextCardResponse.setGameIsDone(false);
+            nextCardResponse.setCurrentRound(nextCard);
+            nextCardResponse.setMessage("Current round is " + nextCard);
+
+        } else {
+            // game is done
+            nextCardResponse.setGameIsDone(true);
+            nextCardResponse.setMessage("Game is done");
+            nextCardResponse.setCurrentRound(nextCard);
+
+        }
+
+        return nextCardResponse;
+    }
+
+
+
     @MessageMapping("/game/create/{lobby}")
     @SendTo("/topic/greetings/{lobby}")
     public LobbyResponse createLobby(@DestinationVariable String lobby) throws Exception {
 
         LobbyResponse lobbyResponse = new LobbyResponse();
 
-        System.out.println(lobby);
 
         GameLobby gameLobby = gameService.fetchGameLobbyFromLobbyCode(lobby);
-
-        System.out.println(gameLobby);
 
         lobbyResponse.setGameLobby(gameLobby);
 
         lobbyResponse.setMessage("Created lobby: " + lobby);
 
-        System.out.println(lobbyResponse.getGameLobby());
+
 
         return lobbyResponse;
     }

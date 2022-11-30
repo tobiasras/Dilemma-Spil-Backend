@@ -50,6 +50,12 @@ public class GameService {
         }
     }
 
+    public int setCurrentRound(String lobby, int currentRound){
+        fetchGameLobbyFromLobbyCode(lobby).setCurrentRound(currentRound);
+
+        return currentRound;
+    }
+
     public void readyUp(Player player, String lobbyCode) {
         GameLobby gameLobbyList = gameRepository.getGameLobbyList().get(lobbyCode);
         gameLobbyList.readyUp(player);

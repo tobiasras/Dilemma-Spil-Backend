@@ -53,6 +53,7 @@ public class CardPackageService implements CrudInterface<CardPackageModel, Integ
 
         List<DilemmaModel> dilemmaModels = dilemmaRepository.findDilemmaModelsByCardPackageModelsId(integer);
 
+
         return dilemmaModels;
     }
 }

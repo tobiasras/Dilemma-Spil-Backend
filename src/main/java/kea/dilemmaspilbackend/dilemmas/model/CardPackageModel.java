@@ -21,7 +21,7 @@ public class CardPackageModel {
     private String daName;
     private String enName;
 
-    @ManyToMany(fetch = FetchType.LAZY,
+    @ManyToMany(fetch = FetchType.EAGER,
             cascade = {
                     CascadeType.ALL}
             )

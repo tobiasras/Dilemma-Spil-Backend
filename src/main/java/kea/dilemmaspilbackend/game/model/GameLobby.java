@@ -13,6 +13,8 @@ public class GameLobby {
     private String lobbyCode;
     private List<Player> playerList;
     private int currentRound;
+    private int totalRounds;
+
 
     public GameLobby() {
         lobbyCode = createLobbyCode();
@@ -42,9 +44,9 @@ public class GameLobby {
     }
 
     public void advanceGame() {
-        int numberOfReadyPlayers = (int) playerList.stream().filter(Player::isReady).count();
-        if (playerList.size() == numberOfReadyPlayers)
-            currentRound++;
+        //int numberOfReadyPlayers = (int) playerList.stream().filter(Player::isReady).count();
+        //if (playerList.size() == numberOfReadyPlayers)
+        currentRound++;
     }
 
     public void readyUp(Player player) {
