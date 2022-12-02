@@ -1,4 +1,4 @@
-package kea.dilemmaspilbackend.model;
+package kea.dilemmaspilbackend.game.model;
 
 import kea.dilemmaspilbackend.game.model.GameLobby;
 import org.junit.jupiter.api.Assertions;
