@@ -1,7 +1,9 @@
 package kea.dilemmaspilbackend.game.model;
 
+import kea.dilemmaspilbackend.dilemmas.model.CardPackageModel;
 import lombok.Data;
 import lombok.ToString;
+import org.springframework.data.annotation.Transient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +14,7 @@ import java.util.UUID;
 public class GameLobby {
     private String lobbyCode;
     private List<Player> playerList;
+    private CardPackageModel cardPackage;
     private int currentRound;
     private int totalRounds;
 

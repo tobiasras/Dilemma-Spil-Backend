@@ -4,7 +4,6 @@ import kea.dilemmaspilbackend.admin.model.AdminUser;
 import kea.dilemmaspilbackend.admin.security.JwtResponse;
 import kea.dilemmaspilbackend.admin.service.AdminUserService;
 import lombok.AllArgsConstructor;
-import org.apache.tomcat.util.http.parser.HttpParser;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;

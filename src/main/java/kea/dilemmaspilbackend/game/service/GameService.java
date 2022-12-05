@@ -1,5 +1,7 @@
 package kea.dilemmaspilbackend.game.service;
 
+import kea.dilemmaspilbackend.admin.model.GameLobbyStat;
+import kea.dilemmaspilbackend.admin.service.StatisticsService;
 import kea.dilemmaspilbackend.game.model.GameLobby;
 import kea.dilemmaspilbackend.game.model.Player;
 import kea.dilemmaspilbackend.game.repository.GameRepository;
@@ -14,6 +16,7 @@ import java.util.Map;
 @AllArgsConstructor
 public class GameService {
     private GameRepository gameRepository;
+    private StatisticsService statisticsService;
 
     public GameLobby createGameLobby(Player player) {
 
@@ -38,6 +41,15 @@ public class GameService {
 
     public void removeGameLobby(String lobbyCode) {
         gameRepository.getGameLobbyList().remove(lobbyCode);
+    }
+    // The endGame method saves the relevant statistical information from the gamelobby to the database and removes the gamelobby.
+    public void endGame(String lobbyCode) {
+        GameLobby gameLobby = gameRepository.getGameLobbyList().get(lobbyCode);
+        GameLobbyStat gameLobbyStat = new GameLobbyStat();
+        gameLobbyStat.setPlayerList(gameLobby.getPlayerList());
+        gameLobbyStat.setCardPackageUsed(gameLobby.getCardPackage());
+        statisticsService.saveGameLobbyStat(gameLobbyStat);
+        removeGameLobby(lobbyCode);
     }
 
     public void leaveGameLobby(Player player, String lobbyCode) {

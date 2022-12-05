@@ -1,23 +1,16 @@
 package kea.dilemmaspilbackend.admin.service;
 
 import kea.dilemmaspilbackend.admin.model.AdminUser;
-import kea.dilemmaspilbackend.admin.repository.AdminUserRepository;
 import kea.dilemmaspilbackend.admin.security.JWTUtilToken;
 import kea.dilemmaspilbackend.admin.security.JwtDetailsService;
 import kea.dilemmaspilbackend.admin.security.JwtResponse;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class AdminUserService {
