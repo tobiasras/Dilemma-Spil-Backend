@@ -90,6 +90,17 @@ public class CardPackageController {
             return ResponseEntity.ok(null);
         }
     }
+
+    @GetMapping("/api/get/findall/cardpackage")
+    public ResponseEntity<Set<CardPackageModel>> getAllCardpackages(){
+
+        Set<CardPackageModel> set = new HashSet<>();
+
+        cardPackageService.findAll().forEach(set::add);
+
+        return ResponseEntity.ok(set);
+    }
+
     @GetMapping("/api/get/alldilemmas/{id}/cardpackage")
     public ResponseEntity<List<DilemmaModel>> allDilemmasFromCardPackage(@PathVariable Integer id){
 
