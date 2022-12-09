@@ -1,24 +1,25 @@
 package kea.dilemmaspilbackend.game.model;
 
-import lombok.Data;
+import kea.dilemmaspilbackend.dilemmas.model.DilemmaModel;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
-import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
-@ToString
 @Setter
 @Getter
-@Entity
 public class Player {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
-    private Long id;
-
     private String name;
-    private String fieldOfStudy;
-    @Transient
     private boolean isReady;
+    private List<RoundResponse> listOfRoundResponses;
+    private StudyField groupFieldOfStudy;
+
+    public Player() {
+        this.listOfRoundResponses = new ArrayList<>();
+    }
+
+    public void chooseResponse(DilemmaModel dilemma, int importanceOfDilemma, int valueOfDiscussion) {
+        listOfRoundResponses.add(new RoundResponse(dilemma, importanceOfDilemma, valueOfDiscussion));
+    }
 }

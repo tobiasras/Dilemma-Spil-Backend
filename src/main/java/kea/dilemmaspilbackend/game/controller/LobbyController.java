@@ -1,6 +1,7 @@
 package kea.dilemmaspilbackend.game.controller;
 
 
+import kea.dilemmaspilbackend.dilemmas.model.CardPackageModel;
 import kea.dilemmaspilbackend.game.model.GameLobby;
 import kea.dilemmaspilbackend.game.model.Player;
 import kea.dilemmaspilbackend.game.response.LobbyResponse;
@@ -21,8 +22,8 @@ public class LobbyController {
     private GameService gameService;
 
     @PostMapping ("api/post/create/lobby")
-    public ResponseEntity<GameLobby> createLobby(@RequestBody Player player){
-        GameLobby gameLobby = gameService.createGameLobby(player);
+    public ResponseEntity<GameLobby> createLobby(@RequestBody Player player, @RequestBody CardPackageModel cardPackage){
+        GameLobby gameLobby = gameService.createGameLobby(player, cardPackage);
 
 
         return new ResponseEntity<>(gameLobby, HttpStatus.OK);

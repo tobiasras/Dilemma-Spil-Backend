@@ -1,6 +1,6 @@
 package kea.dilemmaspilbackend.admin.controller;
 
-import kea.dilemmaspilbackend.admin.model.GameLobbyStat;
+import kea.dilemmaspilbackend.game.model.GameLobbyLogger;
 import kea.dilemmaspilbackend.admin.service.StatisticsService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,7 +18,7 @@ public class StatisticsController {
     private StatisticsService statisticsService;
 
     @GetMapping("/admin/get-gamelobbystats")
-    public ResponseEntity<List<GameLobbyStat>> getAllGameLobbies() {
+    public ResponseEntity<List<GameLobbyLogger>> getAllGameLobbies() {
         return new ResponseEntity<>(statisticsService.getAllGameLobbies(), HttpStatus.OK);
     }
 }
