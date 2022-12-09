@@ -7,6 +7,7 @@ import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -34,4 +35,19 @@ public class CardPackageModel {
     public void addDilemma(DilemmaModel dilemmaModel){
         this.dilemmaModels.add(dilemmaModel);
     }
+
+    public void removeDilemma(DilemmaModel dilemmaModel){
+
+        Iterator<DilemmaModel> iterator = dilemmaModels.iterator();
+
+        while(iterator.hasNext()){
+            DilemmaModel remove = iterator.next();
+
+            if(remove == dilemmaModel){
+                iterator.remove();
+            }
+        }
+
+    }
+
 }

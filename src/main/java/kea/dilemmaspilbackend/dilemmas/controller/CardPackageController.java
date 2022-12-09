@@ -81,6 +81,42 @@ public class CardPackageController {
         }
     }
 
+    @PostMapping("/api/post/removedilemma/{dilemmaid}/{id}/cardpackage")
+    public ResponseEntity<Map> removeDilemma(@PathVariable Integer dilemmaid, @PathVariable Integer id){
+
+        Optional<CardPackageModel> checkModel = cardPackageService.findById(id);
+        Optional<DilemmaModel> checkDilemma = dilemmaService.findById(dilemmaid);
+
+        if(checkModel.isPresent() && checkDilemma.isPresent()){
+
+            CardPackageModel cardPackageModel = cardPackageService.findById(id).get();
+
+            DilemmaModel dilemmaModel = dilemmaService.findById(dilemmaid).get();
+
+                Set<DilemmaModel> models = cardPackageModel.getDilemmaModels();
+
+                models.remove(dilemmaModel);
+
+                cardPackageModel.setDilemmaModels(models);
+
+
+            cardPackageService.save(cardPackageModel);
+
+            Map<String, String> msg = new HashMap<>();
+
+            msg.put("MSG","Dilemma removed");
+
+            return ResponseEntity.ok(msg);
+        }
+        else{
+            Map<String, String> msg = new HashMap<>();
+
+            msg.put("MSG","Dilemma not removed");
+
+            return ResponseEntity.ok(msg);
+        }
+    }
+
     @GetMapping("/api/get/find/{id}/cardpackage")
     public ResponseEntity<CardPackageModel> findCardPackage(@PathVariable() Integer id){
 
