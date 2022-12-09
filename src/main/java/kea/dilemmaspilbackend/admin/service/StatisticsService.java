@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
 @Service
 @AllArgsConstructor
 public class StatisticsService {
+    /*
     private GameStatRepository gameStatRepository;
     public List<GameLobbyLogger> getAllGameLobbies() {
         return gameStatRepository.findAll();
@@ -18,4 +20,7 @@ public class StatisticsService {
     public void saveGameLobbyStat(GameLobbyLogger gameLobbyLogger) {
         gameStatRepository.save(gameLobbyLogger);
     }
+
+
+     */
 }

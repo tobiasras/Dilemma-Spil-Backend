@@ -1,4 +1,4 @@
-package kea.dilemmaspilbackend.dilemmas.config;
+package kea.dilemmaspilbackend.admin.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;

@@ -1,9 +1,8 @@
 package kea.dilemmaspilbackend.dilemmas.controller;
 
 import kea.dilemmaspilbackend.dilemmas.model.DilemmaModel;
-import kea.dilemmaspilbackend.dilemmas.service.DilemmaService;
+import kea.dilemmaspilbackend.dilemmas.repository.service.DilemmaService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;

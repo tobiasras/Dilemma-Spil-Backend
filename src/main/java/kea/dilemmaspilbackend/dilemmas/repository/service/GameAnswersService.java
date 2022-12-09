@@ -1,4 +1,4 @@
-package kea.dilemmaspilbackend.dilemmas.service;
+package kea.dilemmaspilbackend.dilemmas.repository.service;
 
 import kea.dilemmaspilbackend.dilemmas.model.GameAnswersModel;
 import kea.dilemmaspilbackend.dilemmas.repository.GameAnswersRepository;

@@ -1,10 +1,9 @@
 package kea.dilemmaspilbackend.dilemmas.controller;
 
-import kea.dilemmaspilbackend.dilemmas.model.CommentsDilemmaModel;
 import kea.dilemmaspilbackend.dilemmas.model.DilemmaModel;
 import kea.dilemmaspilbackend.dilemmas.model.GameAnswersModel;
-import kea.dilemmaspilbackend.dilemmas.service.DilemmaService;
-import kea.dilemmaspilbackend.dilemmas.service.GameAnswersService;
+import kea.dilemmaspilbackend.dilemmas.repository.service.DilemmaService;
+import kea.dilemmaspilbackend.dilemmas.repository.service.GameAnswersService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

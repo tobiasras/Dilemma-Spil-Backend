@@ -1,4 +1,4 @@
-package kea.dilemmaspilbackend.admin.controller;
+package kea.dilemmaspilbackend.dilemmas.controller;
 
 import kea.dilemmaspilbackend.game.model.GameLobbyLogger;
 import kea.dilemmaspilbackend.admin.service.StatisticsService;
@@ -15,10 +15,15 @@ import java.util.List;
 @CrossOrigin
 @AllArgsConstructor
 public class StatisticsController {
+
+    /*
     private StatisticsService statisticsService;
 
     @GetMapping("/admin/get-gamelobbystats")
     public ResponseEntity<List<GameLobbyLogger>> getAllGameLobbies() {
         return new ResponseEntity<>(statisticsService.getAllGameLobbies(), HttpStatus.OK);
     }
+
+
+     */
 }

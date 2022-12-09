@@ -1,6 +1,6 @@
-package kea.dilemmaspilbackend.game.controller;
+package kea.dilemmaspilbackend.game.model.controller;
 import kea.dilemmaspilbackend.dilemmas.model.CardPackageModel;
-import kea.dilemmaspilbackend.dilemmas.service.CardPackageService;
+import kea.dilemmaspilbackend.dilemmas.repository.service.CardPackageService;
 import kea.dilemmaspilbackend.game.model.GameLobby;
 import kea.dilemmaspilbackend.game.model.Player;
 import kea.dilemmaspilbackend.game.response.LobbyResponse;

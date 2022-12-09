@@ -1,4 +1,4 @@
-package kea.dilemmaspilbackend.game.controller;
+package kea.dilemmaspilbackend.game.model.controller;
 
 
 import kea.dilemmaspilbackend.dilemmas.model.CardPackageModel;
