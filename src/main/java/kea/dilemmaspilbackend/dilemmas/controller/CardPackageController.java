@@ -10,10 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.criteria.CriteriaBuilder;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @RestController
 public class CardPackageController {
@@ -43,7 +40,7 @@ public class CardPackageController {
     }
 
     @PostMapping("/api/post/adddilemma/{dilemmaid}/{id}/cardpackage")
-    public ResponseEntity<String> addDilemma(@PathVariable Integer dilemmaid, @PathVariable Integer id){
+    public ResponseEntity<Map> addDilemma(@PathVariable Integer dilemmaid, @PathVariable Integer id){
 
         Optional<CardPackageModel> checkModel = cardPackageService.findById(id);
         Optional<DilemmaModel> checkDilemma = dilemmaService.findById(dilemmaid);
@@ -69,10 +66,18 @@ public class CardPackageController {
 
             cardPackageService.save(cardPackageModel);
 
-            return ResponseEntity.ok("Dilemma added");
+            Map<String, String> msg = new HashMap<>();
+
+            msg.put("MSG","Dilemma added");
+
+            return ResponseEntity.ok(msg);
         }
         else{
-            return ResponseEntity.ok("Could not add dilemma");
+            Map<String, String> msg = new HashMap<>();
+
+            msg.put("MSG","Dilemma not added");
+
+            return ResponseEntity.ok(msg);
         }
     }
 
@@ -101,6 +106,7 @@ public class CardPackageController {
         return ResponseEntity.ok(set);
     }
 
+    // uses cardpackage id
     @GetMapping("/api/get/alldilemmas/{id}/cardpackage")
     public ResponseEntity<List<DilemmaModel>> allDilemmasFromCardPackage(@PathVariable Integer id){
 
