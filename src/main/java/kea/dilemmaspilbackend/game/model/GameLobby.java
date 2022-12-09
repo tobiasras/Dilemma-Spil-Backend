@@ -1,23 +1,30 @@
 package kea.dilemmaspilbackend.game.model;
 
+import kea.dilemmaspilbackend.dilemmas.model.CardPackageModel;
 import lombok.Data;
 import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.UUID;
+
 @ToString
 @Data
 public class GameLobby {
     private String lobbyCode;
     private List<Player> playerList;
+    private CardPackageModel cardPackage;
     private int currentRound;
     private int totalRounds;
+    private GameLobbyLogger gameLobbyLogger;
 
-    public GameLobby() {
-        lobbyCode = createLobbyCode();
-        playerList = new ArrayList<>();
+
+    public GameLobby(CardPackageModel cardPackage, Player player) {
+        this.lobbyCode = createLobbyCode();
+        this.playerList = new ArrayList<>();
+        this.cardPackage = cardPackage;
+        this.totalRounds = cardPackage.getDilemmaModels().size();
+        addPlayer(player);
         currentRound = -1;
     }
 
@@ -46,6 +53,10 @@ public class GameLobby {
         //int numberOfReadyPlayers = (int) playerList.stream().filter(Player::isReady).count();
         //if (playerList.size() == numberOfReadyPlayers)
         currentRound++;
+    }
+
+    public void endGame() {
+        gameLobbyLogger.log(this);
     }
 
     public void readyUp(Player player) {
