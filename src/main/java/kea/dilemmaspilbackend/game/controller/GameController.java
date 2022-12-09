@@ -1,6 +1,5 @@
 package kea.dilemmaspilbackend.game.controller;
 import kea.dilemmaspilbackend.dilemmas.model.CardPackageModel;
-import kea.dilemmaspilbackend.dilemmas.model.DilemmaModel;
 import kea.dilemmaspilbackend.dilemmas.service.CardPackageService;
 import kea.dilemmaspilbackend.game.model.GameLobby;
 import kea.dilemmaspilbackend.game.model.Player;
@@ -9,19 +8,14 @@ import kea.dilemmaspilbackend.game.response.NextCardResponse;
 import kea.dilemmaspilbackend.game.response.StartGameResponse;
 import kea.dilemmaspilbackend.game.service.GameService;
 import lombok.AllArgsConstructor;
-import org.hibernate.Hibernate;
 import org.springframework.core.NestedExceptionUtils;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageExceptionHandler;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import javax.persistence.Lob;
-import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 
 @AllArgsConstructor
@@ -74,7 +68,6 @@ class GameController {
 
         startGameResponse.setCardPackage(cardPackageModel);
 
-
         gameLobby.setTotalRounds(cardPackageModel.getDilemmaModels().size());
 
         int currentRound = gameLobby.getCurrentRound();
@@ -82,7 +75,7 @@ class GameController {
         if (currentRound == -1){
             gameLobby.advanceGame();
         } else {
-            currentRound = 0;
+            gameLobby.setCurrentRound(0);
         }
 
         startGameResponse.setGameLobby(gameLobby);
@@ -92,39 +85,37 @@ class GameController {
         return startGameResponse;
     }
 
-
-
-
     @MessageMapping("/game/next-card/{lobby}/{nextCard}")
     @SendTo("/topic/next-card/{lobby}")
     public NextCardResponse nextCard(@DestinationVariable String lobby, @DestinationVariable int nextCard){
         NextCardResponse nextCardResponse = new NextCardResponse();
-
         GameLobby gameLobby = gameService.fetchGameLobbyFromLobbyCode(lobby);
-
-
 
         int totalRounds = gameLobby.getTotalRounds();
 
-        if (!(nextCard > totalRounds -1)){
+
+        if (nextCard < 0){
+            // zero is first card
+            nextCardResponse.setGameIsDone(false);
+            nextCardResponse.setMessage("U cant go more backwards");
+            nextCardResponse.setCurrentRound(0);
+
+        } else if (nextCard > totalRounds-1){
+            // game is done
+            nextCardResponse.setGameIsDone(true);
+            nextCardResponse.setMessage("Game is done");
+            nextCardResponse.setCurrentRound(nextCard);
+        } else {
             gameService.setCurrentRound(lobby, nextCard);
 
             nextCardResponse.setGameIsDone(false);
             nextCardResponse.setCurrentRound(nextCard);
             nextCardResponse.setMessage("Current round is " + nextCard);
-
-        } else {
-            // game is done
-            nextCardResponse.setGameIsDone(true);
-            nextCardResponse.setMessage("Game is done");
-            nextCardResponse.setCurrentRound(nextCard);
-
         }
+
 
         return nextCardResponse;
     }
-
-
 
     @MessageMapping("/game/create/{lobby}")
     @SendTo("/topic/greetings/{lobby}")
@@ -142,6 +133,19 @@ class GameController {
 
 
         return lobbyResponse;
+    }
+
+
+    @MessageMapping("/game/update/value/{lobby}/{answer}")
+    @SendTo("/topic/answer/value/{lobby}")
+    public String updateRangeValue(@DestinationVariable String lobby, @DestinationVariable String answer){
+        return answer;
+    }
+
+    @MessageMapping("/game/update/importance/{lobby}/{answer}")
+    @SendTo("/topic/answer/importance/{lobby}")
+    public String updateRangeImportance(@DestinationVariable String lobby, @DestinationVariable String answer){
+        return answer;
     }
 
 

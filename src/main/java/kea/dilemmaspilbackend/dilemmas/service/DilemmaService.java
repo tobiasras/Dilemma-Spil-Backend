@@ -20,6 +20,7 @@ public class DilemmaService implements CrudInterface<DilemmaModel, Integer> {
     @Override
     public Set<DilemmaModel> findAll() {
         Set<DilemmaModel> set = new HashSet<>(dilemmaRepository.findAll());
+
         return set;
     }
 

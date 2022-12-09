@@ -1,4 +1,4 @@
-package kea.dilemmaspilbackend.game.config;
+package kea.dilemmaspilbackend.dilemmas.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
@@ -12,7 +12,7 @@ public class WebsocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/game/{lobby}").setAllowedOrigins("http://localhost:63343/").withSockJS();
+        registry.addEndpoint("/game/{lobby}").setAllowedOrigins("http://localhost:63343/", "http://127.0.0.1:5500/").withSockJS();
     }
 
     @Override

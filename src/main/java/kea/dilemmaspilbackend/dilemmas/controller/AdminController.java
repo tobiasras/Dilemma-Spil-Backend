@@ -1,4 +1,4 @@
-package kea.dilemmaspilbackend.admin.controller;
+package kea.dilemmaspilbackend.dilemmas.controller;
 
 import kea.dilemmaspilbackend.admin.model.AdminUser;
 import kea.dilemmaspilbackend.admin.security.JwtResponse;

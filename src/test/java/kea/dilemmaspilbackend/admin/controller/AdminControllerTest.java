@@ -3,6 +3,7 @@ package kea.dilemmaspilbackend.admin.controller;
 import kea.dilemmaspilbackend.admin.security.JWTUtilToken;
 import kea.dilemmaspilbackend.admin.security.JwtDetailsService;
 import kea.dilemmaspilbackend.admin.service.AdminUserService;
+import kea.dilemmaspilbackend.dilemmas.controller.AdminController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

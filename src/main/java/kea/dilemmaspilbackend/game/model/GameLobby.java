@@ -15,7 +15,6 @@ public class GameLobby {
     private int currentRound;
     private int totalRounds;
 
-
     public GameLobby() {
         lobbyCode = createLobbyCode();
         playerList = new ArrayList<>();
