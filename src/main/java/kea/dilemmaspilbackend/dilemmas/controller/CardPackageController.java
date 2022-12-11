@@ -24,19 +24,27 @@ public class CardPackageController {
     }
 
     @PostMapping("/api/post/create/cardpackage")
-    public ResponseEntity<String> createCardpackage(@RequestBody CardPackageModel cardPackageModel){
+    public ResponseEntity<Map> createCardpackage(@RequestBody CardPackageModel cardPackageModel){
 
         cardPackageService.save(cardPackageModel);
 
-       return ResponseEntity.ok("Created new package");
+        Map<String, String> msg = new HashMap<>();
+
+        msg.put("Message", "Created new package!");
+
+       return ResponseEntity.ok(msg);
     }
 
     @PostMapping("/api/post/delete/{id}/cardpackage")
-    public ResponseEntity<String> deleteCardpackage(@PathVariable Integer id){
+    public ResponseEntity<Map> deleteCardpackage(@PathVariable Integer id){
 
         cardPackageService.deleteById(id);
 
-        return ResponseEntity.ok("Deleted package");
+        Map<String, String> msg = new HashMap<>();
+
+        msg.put("Message", "Deleted package!");
+
+        return ResponseEntity.ok(msg);
     }
 
     @PostMapping("/api/post/adddilemma/{dilemmaid}/{id}/cardpackage")
