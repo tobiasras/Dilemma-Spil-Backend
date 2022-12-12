@@ -81,7 +81,7 @@ public class DilemmaController {
         }
     }
 
-    @GetMapping("/api/get/findall/dilemma")
+    @GetMapping("api/get/findall/dilemma")
     public ResponseEntity<Set<DilemmaModel>> findAllDilemmas(){
 
         Set<DilemmaModel> models =  new HashSet<>();
