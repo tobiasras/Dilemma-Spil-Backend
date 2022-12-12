@@ -7,10 +7,7 @@ import kea.dilemmaspilbackend.dilemmas.repository.service.HintsDilemmaService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @RestController
 public class HintsDilemmaController {
@@ -47,15 +44,28 @@ public class HintsDilemmaController {
 
     // requires to receive id in the body
     @PostMapping("/api/post/update/{id}/hintsdilemma")
-    public ResponseEntity<String> updateHint(@RequestBody HintsDilemmaModel hintsDilemmaModel, @PathVariable() Integer id) {
+    public ResponseEntity<Map> updateHint(@RequestBody HintsDilemmaModel hintsDilemmaModel, @PathVariable() Integer id) {
 
         Optional<HintsDilemmaModel> oldHint = hintsDilemmaService.findById(id);
         if (oldHint.isPresent() && hintsDilemmaModel.getId() == id) {
-            hintsDilemmaService.save(hintsDilemmaModel);
-            return ResponseEntity.ok("Updated hint");
+
+            HintsDilemmaModel nextHint = oldHint.get();
+
+            nextHint.setDaForHint(hintsDilemmaModel.getDaForHint());
+            nextHint.setDaAgainstHint(hintsDilemmaModel.getDaAgainstHint());
+            nextHint.setEnForHint(hintsDilemmaModel.getEnForHint());
+            nextHint.setEnAgainstHint(hintsDilemmaModel.getEnAgainstHint());
+
+            hintsDilemmaService.save(nextHint);
+
+            Map<String, String> map = new HashMap<>();
+            map.put("Message", "Updated hint");
+            return ResponseEntity.ok(map);
         }
         else{
-            return ResponseEntity.ok("Not updated");
+            Map<String, String> map = new HashMap<>();
+            map.put("Message", "Did not update hint");
+            return ResponseEntity.ok(map);
         }
     }
 

@@ -37,7 +37,7 @@ public class DilemmaController {
 
 
     @PostMapping("/api/post/update/{id}/dilemma")
-    public ResponseEntity<String> updateDilemma(@RequestBody DilemmaModel dilemmaModel, @PathVariable() Integer id) {
+    public ResponseEntity<Map> updateDilemma(@RequestBody DilemmaModel dilemmaModel, @PathVariable() Integer id) {
 
         String msg = "Updated dilemma with the names " + dilemmaModel.getDaName() + "/" + dilemmaModel.getEnName() +
         " and descriptions: " + dilemmaModel.getDaDescription() + " AND " + dilemmaModel.getEnDescription();
@@ -45,10 +45,20 @@ public class DilemmaController {
         Optional<DilemmaModel> oldDilemma = dilemmaService.findById(id);
         if (oldDilemma.isPresent() && id == dilemmaModel.getId()) {
             dilemmaService.save(dilemmaModel);
-            return ResponseEntity.ok(msg);
+
+            Map<String, String> map = new HashMap<>();
+
+            map.put("message", msg);
+
+            return ResponseEntity.ok(map);
         }
         else{
-            return ResponseEntity.ok("Not updated");
+
+            Map<String, String> map = new HashMap<>();
+
+            map.put("message", "not updated");
+
+            return ResponseEntity.ok(map);
         }
     }
 
