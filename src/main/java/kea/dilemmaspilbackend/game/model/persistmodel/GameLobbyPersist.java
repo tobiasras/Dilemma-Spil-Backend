@@ -30,6 +30,8 @@ public class GameLobbyPersist {
 
     private List<PlayerPersist> convertPlayerToPlayerPersist(List<Player> playerList) {
         List<PlayerPersist> playerPersists = new ArrayList<>();
+
+
         for (Player player: playerList) {
             playerPersists.add(new PlayerPersist(player.getListOfRoundResponses(), player.getGroupFieldOfStudy()));
         }

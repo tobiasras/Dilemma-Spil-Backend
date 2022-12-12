@@ -1,4 +1,4 @@
-package kea.dilemmaspilbackend.game.model.controller;
+package kea.dilemmaspilbackend.game.controller;
 import kea.dilemmaspilbackend.dilemmas.model.CardPackageModel;
 import kea.dilemmaspilbackend.dilemmas.repository.service.CardPackageService;
 import kea.dilemmaspilbackend.game.model.GameLobby;
@@ -105,6 +105,8 @@ class GameController {
             nextCardResponse.setGameIsDone(true);
             nextCardResponse.setMessage("Game is done");
             nextCardResponse.setCurrentRound(nextCard);
+
+
         } else {
             gameService.setCurrentRound(lobby, nextCard);
 
