@@ -1,15 +1,12 @@
 package kea.dilemmaspilbackend.dilemmas.controller;
 
 import kea.dilemmaspilbackend.dilemmas.model.CardPackageModel;
-import kea.dilemmaspilbackend.dilemmas.model.CommentsDilemmaModel;
 import kea.dilemmaspilbackend.dilemmas.model.DilemmaModel;
-import kea.dilemmaspilbackend.dilemmas.repository.DilemmaRepository;
-import kea.dilemmaspilbackend.dilemmas.repository.service.CardPackageService;
-import kea.dilemmaspilbackend.dilemmas.repository.service.DilemmaService;
+import kea.dilemmaspilbackend.dilemmas.service.CardPackageService;
+import kea.dilemmaspilbackend.dilemmas.service.DilemmaService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.*;
 
 @RestController

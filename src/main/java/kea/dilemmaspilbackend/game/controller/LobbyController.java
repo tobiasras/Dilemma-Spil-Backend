@@ -1,12 +1,9 @@
 package kea.dilemmaspilbackend.game.controller;
 
 
-import kea.dilemmaspilbackend.dilemmas.model.CardPackageModel;
 import kea.dilemmaspilbackend.game.model.GameLobby;
-import kea.dilemmaspilbackend.game.model.GameLobbyLogger;
 import kea.dilemmaspilbackend.game.model.Player;
-import kea.dilemmaspilbackend.game.model.persistmodel.GameLobbyPersist;
-import kea.dilemmaspilbackend.game.response.LobbyResponse;
+import kea.dilemmaspilbackend.game.model.response.LobbyResponse;
 import kea.dilemmaspilbackend.game.service.GameLobbyLoggerService;
 import kea.dilemmaspilbackend.game.service.GameService;
 import lombok.AllArgsConstructor;
@@ -66,7 +63,7 @@ public class LobbyController {
 
 
     @PostMapping("api/post/save/lobbyStats")
-    public ResponseEntity saveStats(@RequestBody GameLobby gameLobby){
+    public ResponseEntity<HttpStatus> saveStats(@RequestBody GameLobby gameLobby){
 
         System.out.println(gameLobby);
 
@@ -75,7 +72,7 @@ public class LobbyController {
 
         //gameLobbyLoggerService.save(gameLobbyPersist);
 
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 

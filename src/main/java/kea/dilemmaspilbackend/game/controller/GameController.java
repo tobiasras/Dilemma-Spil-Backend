@@ -1,11 +1,11 @@
 package kea.dilemmaspilbackend.game.controller;
 import kea.dilemmaspilbackend.dilemmas.model.CardPackageModel;
-import kea.dilemmaspilbackend.dilemmas.repository.service.CardPackageService;
+import kea.dilemmaspilbackend.dilemmas.service.CardPackageService;
 import kea.dilemmaspilbackend.game.model.GameLobby;
 import kea.dilemmaspilbackend.game.model.Player;
-import kea.dilemmaspilbackend.game.response.LobbyResponse;
-import kea.dilemmaspilbackend.game.response.NextCardResponse;
-import kea.dilemmaspilbackend.game.response.StartGameResponse;
+import kea.dilemmaspilbackend.game.model.response.LobbyResponse;
+import kea.dilemmaspilbackend.game.model.response.NextCardResponse;
+import kea.dilemmaspilbackend.game.model.response.StartGameResponse;
 import kea.dilemmaspilbackend.game.service.GameService;
 import lombok.AllArgsConstructor;
 import org.springframework.core.NestedExceptionUtils;
@@ -25,17 +25,9 @@ class GameController {
     private GameService gameService;
     private CardPackageService cardService;
 
-    @MessageExceptionHandler
-    @SendTo("/topic/errors")
-    public String handleException(IllegalArgumentException e) {
-        var message = ("an exception occurred! " + NestedExceptionUtils.getMostSpecificCause(e));
-        System.out.println(message);
-        return message;
-    }
-
     @MessageMapping("/game/{lobby}")
     @SendTo("/topic/greetings/{lobby}")
-    public LobbyResponse joinLobby(@DestinationVariable String lobby, Player player) throws Exception {
+    public LobbyResponse joinLobby(@DestinationVariable String lobby, Player player) {
         // player is a json request
 
 
@@ -121,7 +113,7 @@ class GameController {
 
     @MessageMapping("/game/create/{lobby}")
     @SendTo("/topic/greetings/{lobby}")
-    public LobbyResponse createLobby(@DestinationVariable String lobby) throws Exception {
+    public LobbyResponse createLobby(@DestinationVariable String lobby) {
 
         LobbyResponse lobbyResponse = new LobbyResponse();
 

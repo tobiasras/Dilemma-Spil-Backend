@@ -1,4 +1,4 @@
-package kea.dilemmaspilbackend.dilemmas.repository.service;
+package kea.dilemmaspilbackend.dilemmas.service;
 
 import kea.dilemmaspilbackend.dilemmas.model.CommentsDilemmaModel;
 import kea.dilemmaspilbackend.dilemmas.repository.CommentsDilemmaRepository;
