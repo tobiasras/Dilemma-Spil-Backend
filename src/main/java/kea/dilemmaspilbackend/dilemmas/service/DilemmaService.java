@@ -11,7 +11,7 @@ import java.util.Set;
 @Service
 public class DilemmaService implements CrudInterface<DilemmaModel, Integer> {
 
-    private DilemmaRepository dilemmaRepository;
+    private final DilemmaRepository dilemmaRepository;
 
     public DilemmaService(DilemmaRepository dilemmaRepository){
         this.dilemmaRepository = dilemmaRepository;
@@ -20,7 +20,6 @@ public class DilemmaService implements CrudInterface<DilemmaModel, Integer> {
     @Override
     public Set<DilemmaModel> findAll() {
         Set<DilemmaModel> set = new HashSet<>(dilemmaRepository.findAll());
-
         return set;
     }
 

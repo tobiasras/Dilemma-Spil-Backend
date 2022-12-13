@@ -15,8 +15,8 @@ import java.util.Set;
 @RestController
 public class GameAnswersController {
 
-    private GameAnswersService gameAnswersService;
-    private DilemmaService dilemmaService;
+    private final GameAnswersService gameAnswersService;
+    private final DilemmaService dilemmaService;
 
     GameAnswersController(GameAnswersService gameAnswersService, DilemmaService dilemmaService){
         this.dilemmaService = dilemmaService;

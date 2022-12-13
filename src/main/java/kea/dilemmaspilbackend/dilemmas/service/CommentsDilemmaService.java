@@ -11,7 +11,7 @@ import java.util.Set;
 @Service
 public class CommentsDilemmaService implements CrudInterface<CommentsDilemmaModel, Integer> {
 
-    private CommentsDilemmaRepository commentsDilemmaRepository;
+    private final CommentsDilemmaRepository commentsDilemmaRepository;
 
     CommentsDilemmaService(CommentsDilemmaRepository commentsDilemmaRepository){
         this.commentsDilemmaRepository = commentsDilemmaRepository;

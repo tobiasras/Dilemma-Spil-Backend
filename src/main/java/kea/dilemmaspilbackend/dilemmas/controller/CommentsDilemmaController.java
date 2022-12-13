@@ -14,8 +14,8 @@ import java.util.Set;
 @RestController
 public class CommentsDilemmaController {
 
-    private CommentsDilemmaService commentsDilemmaService;
-    private DilemmaService dilemmaService;
+    private final CommentsDilemmaService commentsDilemmaService;
+    private final DilemmaService dilemmaService;
 
     CommentsDilemmaController(CommentsDilemmaService commentsDilemmaService, DilemmaService dilemmaService){
         this.commentsDilemmaService = commentsDilemmaService;

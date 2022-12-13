@@ -35,7 +35,7 @@ public class LobbyController {
         // finds game lobby
         GameLobby gameLobby = gameService.fetchGameLobbyFromLobbyCode(lobbyID);
 
-        if (gameLobby != null){
+        if (gameService.lobbyExist(lobbyID)){
             lobbyResponse.setGameLobby(gameLobby);
             lobbyResponse.setMessage("Lobby: Found");
 
@@ -63,10 +63,7 @@ public class LobbyController {
 
         System.out.println(gameLobby);
 
-
-        //GameLobbyPersist gameLobbyPersist = new GameLobbyPersist(gameLobby);
-
-        //gameLobbyLoggerService.save(gameLobbyPersist);
+        gameService.endGame(gameLobby.getLobbyCode());
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
