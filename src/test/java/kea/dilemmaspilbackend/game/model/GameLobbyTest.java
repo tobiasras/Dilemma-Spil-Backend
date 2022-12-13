@@ -1,6 +1,6 @@
 package kea.dilemmaspilbackend.game.model;
 
-import kea.dilemmaspilbackend.game.model.GameLobby;
+import kea.dilemmaspilbackend.dilemmas.model.CardPackageModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,7 +10,9 @@ public class GameLobbyTest {
 
     @BeforeEach // kaldes før hver @Test
     public void setUp()  {
-        gameLobby = new GameLobby();
+        Player player = new Player();
+        CardPackageModel cardPackageModel = new CardPackageModel();
+        gameLobby = new GameLobby(cardPackageModel, player);
     }
 
     @Test

@@ -2,7 +2,6 @@ package kea.dilemmaspilbackend.game.model.persistmodel;
 
 import kea.dilemmaspilbackend.game.model.RoundResponse;
 import kea.dilemmaspilbackend.game.model.StudyField;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,7 +17,7 @@ public class PlayerPersist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<RoundResponse> listOfRoundResponses;
     private StudyField groupFieldOfStudy;
 

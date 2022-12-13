@@ -17,7 +17,7 @@ public class CardPackageService implements CrudInterface<CardPackageModel, Integ
     private CardPackageRepository cardPackageRepository;
     private DilemmaRepository dilemmaRepository;
 
-    CardPackageService(CardPackageRepository cardPackageRepository, DilemmaRepository dilemmaRepository){
+    public CardPackageService(CardPackageRepository cardPackageRepository, DilemmaRepository dilemmaRepository){
         this.cardPackageRepository = cardPackageRepository;
         this.dilemmaRepository = dilemmaRepository;
     }

@@ -17,8 +17,9 @@ import java.util.List;
 @Entity
 public class GameLobbyPersist {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<PlayerPersist> playerPersistList;
     @OneToOne
     private CardPackageModel cardPackage;

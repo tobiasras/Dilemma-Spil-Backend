@@ -1,6 +1,5 @@
 package kea.dilemmaspilbackend.game.service;
 
-import kea.dilemmaspilbackend.game.model.GameLobby;
 import kea.dilemmaspilbackend.game.model.persistmodel.GameLobbyPersist;
 import kea.dilemmaspilbackend.game.repository.GameLobbyPersistRepository;
 import lombok.AllArgsConstructor;

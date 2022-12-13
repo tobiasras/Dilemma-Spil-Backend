@@ -1,6 +1,7 @@
 package kea.dilemmaspilbackend.game.model;
 
 import kea.dilemmaspilbackend.dilemmas.model.DilemmaModel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,6 +12,7 @@ import javax.persistence.*;
 @Getter
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 public class RoundResponse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

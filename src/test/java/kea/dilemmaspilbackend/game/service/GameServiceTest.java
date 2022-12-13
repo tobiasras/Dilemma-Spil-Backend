@@ -1,20 +1,40 @@
 package kea.dilemmaspilbackend.game.service;
 
-import kea.dilemmaspilbackend.game.repository.GameRepository;
+import kea.dilemmaspilbackend.dilemmas.model.CardPackageModel;
+import kea.dilemmaspilbackend.dilemmas.repository.CardPackageRepository;
+import kea.dilemmaspilbackend.dilemmas.repository.DilemmaRepository;
+import kea.dilemmaspilbackend.dilemmas.repository.service.CardPackageService;
 import kea.dilemmaspilbackend.game.model.GameLobby;
+import kea.dilemmaspilbackend.game.model.GameLobbyLogger;
 import kea.dilemmaspilbackend.game.model.Player;
+import kea.dilemmaspilbackend.game.repository.GameRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
+import static kea.dilemmaspilbackend.game.model.StudyField.DATAMATIKER;
+
+@SpringBootTest
 public class GameServiceTest {
     GameService gameService;
     GameRepository gameRepository;
-
+    @Autowired
+    CardPackageRepository cardPackageRepository;
+    @Autowired
+    DilemmaRepository dilemmaRepository;
+    @Autowired
+    GameLobbyLoggerService gameLobbyLoggerService;
+    CardPackageModel cardPackageModel;
     @BeforeEach // kaldes før hver @Test
     public void setUp()  {
         gameRepository = new GameRepository();
-        gameService = new GameService(gameRepository);
+        cardPackageModel = new CardPackageModel();
+        GameLobbyLogger gameLobbyLogger = new GameLobbyLogger(gameLobbyLoggerService);
+        CardPackageService cardPackageService = new CardPackageService(cardPackageRepository, dilemmaRepository);
+
+        gameService = new GameService(gameRepository, cardPackageService, gameLobbyLogger);
     }
 
     @Test
@@ -22,7 +42,7 @@ public class GameServiceTest {
         // Tests if a lobby is added to the game lobby list by checking if the lobby code works as a key in the list.
         Player player = new Player();
 
-        GameLobby gameLobby = gameService.createGameLobby(player);
+        GameLobby gameLobby = gameService.createGameLobby(player, 1);
 
 
         Assertions.assertNotNull(gameLobby);
@@ -34,7 +54,7 @@ public class GameServiceTest {
         Player player = new Player();
         player.setName("Thomas");
 
-        GameLobby gameLobby = gameService.createGameLobby(player);
+        GameLobby gameLobby = gameService.createGameLobby(player, 1);
         String lobbyCode = gameLobby.getLobbyCode();
 
 
@@ -46,7 +66,7 @@ public class GameServiceTest {
     public void testRemoveGameLobby(){
         // Tests if a lobby is removed from the list of active games. If the lobby is removed, the test is successful.
         Player player = new Player();
-        GameLobby gameLobby = gameService.createGameLobby(player);
+        GameLobby gameLobby = gameService.createGameLobby(player, 1);
         String lobbyCode = gameLobby.getLobbyCode();
 
         gameService.removeGameLobby(lobbyCode);
@@ -60,7 +80,7 @@ public class GameServiceTest {
         player.setName("Thomas");
 
 
-        GameLobby gameLobby = gameService.createGameLobby(player);
+        GameLobby gameLobby = gameService.createGameLobby(player, 1);
         String lobbyCode = gameLobby.getLobbyCode();
 
         gameService.leaveGameLobby(player, lobbyCode);
@@ -73,10 +93,18 @@ public class GameServiceTest {
         Player player = new Player();
         player.setName("Thomas");
 
-        GameLobby gameLobby = gameService.createGameLobby(player);
+        GameLobby gameLobby = gameService.createGameLobby(player, 1);
         String lobbyCode = gameLobby.getLobbyCode();
 
         gameService.readyUp(player, lobbyCode);
         Assertions.assertTrue(gameRepository.getGameLobbyList().get(lobbyCode).getPlayerList().get(0).isReady());
+    }
+    @Test
+    public void testGameLobbySave() {
+        Player player = new Player();
+        player.setGroupFieldOfStudy(DATAMATIKER);
+        player.setName("Thomas");
+        GameLobby gameLobby = gameService.createGameLobby(player, 1);
+        gameService.endGame(gameLobby.getLobbyCode());
     }
 }

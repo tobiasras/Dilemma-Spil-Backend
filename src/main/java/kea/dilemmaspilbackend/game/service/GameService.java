@@ -3,9 +3,11 @@ package kea.dilemmaspilbackend.game.service;
 import kea.dilemmaspilbackend.dilemmas.model.CardPackageModel;
 import kea.dilemmaspilbackend.dilemmas.repository.service.CardPackageService;
 import kea.dilemmaspilbackend.game.model.GameLobby;
+import kea.dilemmaspilbackend.game.model.GameLobbyLogger;
 import kea.dilemmaspilbackend.game.model.Player;
 import kea.dilemmaspilbackend.game.repository.GameRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,11 +20,12 @@ import java.util.Optional;
 public class GameService {
     private GameRepository gameRepository;
     private CardPackageService cardPackageService;
+    @Autowired
+    private GameLobbyLogger gameLobbyLogger;
 
     public GameLobby createGameLobby(Player player, int cardPackageID) {
 
         Optional<CardPackageModel> byId = cardPackageService.findById(cardPackageID);
-
 
         CardPackageModel cardPackage = byId.orElse(null);
 
@@ -48,7 +51,8 @@ public class GameService {
 
     // The endGame method saves the relevant statistical information from the gamelobby to the database and removes the gamelobby.
     public void endGame(String lobbyCode) {
-        gameRepository.getGameLobbyList().get(lobbyCode).endGame();
+        GameLobby gameLobby = gameRepository.getGameLobbyList().get(lobbyCode);
+        gameLobbyLogger.log(gameLobby);
         removeGameLobby(lobbyCode);
     }
 
