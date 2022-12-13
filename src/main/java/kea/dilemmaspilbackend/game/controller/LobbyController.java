@@ -4,7 +4,6 @@ package kea.dilemmaspilbackend.game.controller;
 import kea.dilemmaspilbackend.game.model.GameLobby;
 import kea.dilemmaspilbackend.game.model.Player;
 import kea.dilemmaspilbackend.game.model.response.LobbyResponse;
-import kea.dilemmaspilbackend.game.service.GameLobbyLoggerService;
 import kea.dilemmaspilbackend.game.service.GameService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -13,14 +12,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
-@CrossOrigin
 @AllArgsConstructor
 @RestController
 public class LobbyController {
 
     private GameService gameService;
-    private GameLobbyLoggerService gameLobbyLoggerService;
 
     @PostMapping ("api/post/create/lobby")
     public ResponseEntity<GameLobby> createLobby(@RequestBody Player player, @RequestParam int cardPackageID){
