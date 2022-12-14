@@ -14,8 +14,8 @@ import java.util.Set;
 @Service
 public class CardPackageService implements CrudInterface<CardPackageModel, Integer>{
 
-    private CardPackageRepository cardPackageRepository;
-    private DilemmaRepository dilemmaRepository;
+    private final CardPackageRepository cardPackageRepository;
+    private final DilemmaRepository dilemmaRepository;
 
     public CardPackageService(CardPackageRepository cardPackageRepository, DilemmaRepository dilemmaRepository){
         this.cardPackageRepository = cardPackageRepository;

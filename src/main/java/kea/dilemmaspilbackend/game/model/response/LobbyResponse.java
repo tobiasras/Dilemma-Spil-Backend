@@ -1,4 +1,4 @@
-package kea.dilemmaspilbackend.game.response;
+package kea.dilemmaspilbackend.game.model.response;
 
 import kea.dilemmaspilbackend.game.model.GameLobby;
 import lombok.Getter;

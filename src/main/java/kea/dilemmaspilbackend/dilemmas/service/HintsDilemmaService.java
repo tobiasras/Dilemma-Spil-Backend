@@ -11,7 +11,7 @@ import java.util.Set;
 @Service
 public class HintsDilemmaService implements CrudInterface<HintsDilemmaModel, Integer> {
 
-    private HintsDilemmaRepository hintsDilemmaRepository;
+    private final HintsDilemmaRepository hintsDilemmaRepository;
 
     HintsDilemmaService(HintsDilemmaRepository hintsDilemmaRepository){
         this.hintsDilemmaRepository = hintsDilemmaRepository;

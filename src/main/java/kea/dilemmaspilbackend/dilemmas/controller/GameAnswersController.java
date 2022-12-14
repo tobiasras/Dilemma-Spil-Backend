@@ -5,6 +5,8 @@ import kea.dilemmaspilbackend.dilemmas.model.GameAnswersModel;
 import kea.dilemmaspilbackend.dilemmas.service.DilemmaService;
 import kea.dilemmaspilbackend.dilemmas.service.GameAnswersService;
 import org.springframework.http.HttpStatus;
+import kea.dilemmaspilbackend.dilemmas.service.DilemmaService;
+import kea.dilemmaspilbackend.dilemmas.service.GameAnswersService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,8 +15,8 @@ import java.util.*;
 @RestController
 public class GameAnswersController {
 
-    private GameAnswersService gameAnswersService;
-    private DilemmaService dilemmaService;
+    private final GameAnswersService gameAnswersService;
+    private final DilemmaService dilemmaService;
 
     GameAnswersController(GameAnswersService gameAnswersService, DilemmaService dilemmaService){
         this.dilemmaService = dilemmaService;
@@ -27,6 +29,7 @@ public class GameAnswersController {
     // uses the id from the relevant dilemma
     @PostMapping("/api/post/create/{id}/gameanswers")
     public ResponseEntity<String> createComment(@RequestBody GameAnswersModel gameAnswersModel, @PathVariable() Integer id){
+
         Optional<DilemmaModel> checkModel = dilemmaService.findById(id);
 
         if(checkModel.isPresent()){
@@ -48,7 +51,7 @@ public class GameAnswersController {
         }
     }
     // uses the id from corresponding dilemma
-    @GetMapping("/api/get/findall/{id}/commentsdilemma")
+    @GetMapping("/api/get/findall/{id}/gameanswers")
     public ResponseEntity<Set<GameAnswersModel>> findAllForGameAnswers(@PathVariable() Integer id){
 
         Set<GameAnswersModel> all =  gameAnswersService.findAll();

@@ -12,7 +12,7 @@ import java.util.Set;
 @Service
 public class GameAnswersService implements CrudInterface<GameAnswersModel, Integer> {
 
-    private GameAnswersRepository gameAnswersRepository;
+    private final GameAnswersRepository gameAnswersRepository;
 
     GameAnswersService(GameAnswersRepository gameAnswersRepository){
         this.gameAnswersRepository = gameAnswersRepository;

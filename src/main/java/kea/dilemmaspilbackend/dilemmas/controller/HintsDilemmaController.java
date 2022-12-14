@@ -12,8 +12,8 @@ import java.util.*;
 @RestController
 public class HintsDilemmaController {
 
-    private HintsDilemmaService hintsDilemmaService;
-    private DilemmaService dilemmaService;
+    private final HintsDilemmaService hintsDilemmaService;
+    private final DilemmaService dilemmaService;
 
     HintsDilemmaController(HintsDilemmaService hintsDilemmaService, DilemmaService dilemmaService){
         this.hintsDilemmaService = hintsDilemmaService;
@@ -44,7 +44,7 @@ public class HintsDilemmaController {
 
     // requires to receive id in the body
     @PostMapping("/api/post/update/{id}/hintsdilemma")
-    public ResponseEntity<Map> updateHint(@RequestBody HintsDilemmaModel hintsDilemmaModel, @PathVariable() Integer id) {
+    public ResponseEntity<Map<String, String>> updateHint(@RequestBody HintsDilemmaModel hintsDilemmaModel, @PathVariable() Integer id) {
 
         Optional<HintsDilemmaModel> oldHint = hintsDilemmaService.findById(id);
         if (oldHint.isPresent() && hintsDilemmaModel.getId() == id) {

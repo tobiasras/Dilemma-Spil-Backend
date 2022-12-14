@@ -23,7 +23,6 @@ import java.util.List;
 public class LobbyController {
 
     private GameService gameService;
-    private GameLobbyLoggerService gameLobbyLoggerService;
 
     @PostMapping ("api/post/create/lobby")
     public ResponseEntity<GameLobby> createLobby(@RequestBody Player player, @RequestParam int cardPackageID){
@@ -42,7 +41,7 @@ public class LobbyController {
         // finds game lobby
         GameLobby gameLobby = gameService.fetchGameLobbyFromLobbyCode(lobbyID);
 
-        if (gameLobby != null){
+        if (gameService.lobbyExist(lobbyID)){
             lobbyResponse.setGameLobby(gameLobby);
             lobbyResponse.setMessage("Lobby: Found");
 
@@ -66,7 +65,7 @@ public class LobbyController {
 
 
     @PostMapping("api/post/save/lobbyStats")
-    public ResponseEntity saveStats(@RequestBody GameLobby gameLobby){
+    public ResponseEntity<HttpStatus> saveStats(@RequestBody GameLobby gameLobby){
 
         System.out.println(gameLobby.getLobbyCode());
 

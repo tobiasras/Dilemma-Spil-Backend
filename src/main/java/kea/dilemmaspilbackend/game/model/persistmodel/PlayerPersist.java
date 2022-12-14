@@ -19,10 +19,10 @@ public class PlayerPersist {
     private Long id;
     @OneToMany(cascade = CascadeType.ALL)
     private List<RoundResponse> listOfRoundResponses;
-    private StudyField groupFieldOfStudy;
+    private String groupFieldOfStudy;
 
     public PlayerPersist(List<RoundResponse> listOfRoundResponses, StudyField groupFieldOfStudy) {
         this.listOfRoundResponses = listOfRoundResponses;
-        this.groupFieldOfStudy = groupFieldOfStudy;
+        this.groupFieldOfStudy = groupFieldOfStudy.name();
     }
 }

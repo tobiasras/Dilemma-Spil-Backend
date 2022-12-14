@@ -12,7 +12,7 @@ public class DilemmaController {
 
     // not sure if we should get the dilemma id from url or as another param, chose url here
 
-    private DilemmaService dilemmaService;
+    private final DilemmaService dilemmaService;
 
     public DilemmaController(DilemmaService dilemmaService){
         this.dilemmaService = dilemmaService;
@@ -37,7 +37,7 @@ public class DilemmaController {
 
 
     @PostMapping("/api/post/update/{id}/dilemma")
-    public ResponseEntity<Map> updateDilemma(@RequestBody DilemmaModel dilemmaModel, @PathVariable() Integer id) {
+    public ResponseEntity<Map<String, String>> updateDilemma(@RequestBody DilemmaModel dilemmaModel, @PathVariable() Integer id) {
 
         String msg = "Updated dilemma with the names " + dilemmaModel.getDaName() + "/" + dilemmaModel.getEnName() +
         " and descriptions: " + dilemmaModel.getDaDescription() + " AND " + dilemmaModel.getEnDescription();
@@ -100,12 +100,12 @@ public class DilemmaController {
 
         if(model.isPresent()){
 
-            System.out.printf("Dilemma found: ");
+            System.out.print("Dilemma found: ");
 
             return ResponseEntity.ok(model);
         }
         else{
-            System.out.printf("Dilemma not found");
+            System.out.print("Dilemma not found");
 
             return ResponseEntity.ok(null);
         }

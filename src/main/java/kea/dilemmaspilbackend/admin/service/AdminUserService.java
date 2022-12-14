@@ -16,9 +16,9 @@ import org.springframework.stereotype.Service;
 public class AdminUserService {
     @Value("${salt}") String salt;
 
-    private AuthenticationManager authenticationManager;
-    private JWTUtilToken jwtUtilToken;
-    private JwtDetailsService jwtDetailsService;
+    private final AuthenticationManager authenticationManager;
+    private final JWTUtilToken jwtUtilToken;
+    private final JwtDetailsService jwtDetailsService;
 
     public AdminUserService(AuthenticationManager authenticationManager, JWTUtilToken jwtUtilToken, JwtDetailsService jwtDetailsService) {
         this.authenticationManager = authenticationManager;

@@ -11,12 +11,11 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Optional;
 import java.util.Set;
-@CrossOrigin
 @RestController
 public class CommentsDilemmaController {
 
-    private CommentsDilemmaService commentsDilemmaService;
-    private DilemmaService dilemmaService;
+    private final CommentsDilemmaService commentsDilemmaService;
+    private final DilemmaService dilemmaService;
 
     CommentsDilemmaController(CommentsDilemmaService commentsDilemmaService, DilemmaService dilemmaService){
         this.commentsDilemmaService = commentsDilemmaService;

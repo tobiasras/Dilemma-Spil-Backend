@@ -12,8 +12,8 @@ import java.util.*;
 @RestController
 public class CardPackageController {
 
-    private CardPackageService cardPackageService;
-    private DilemmaService dilemmaService;
+    private final CardPackageService cardPackageService;
+    private final DilemmaService dilemmaService;
 
     CardPackageController(CardPackageService cardPackageService, DilemmaService dilemmaService){
         this.cardPackageService = cardPackageService;
@@ -21,7 +21,7 @@ public class CardPackageController {
     }
 
     @PostMapping("/api/post/create/cardpackage")
-    public ResponseEntity<Map> createCardpackage(@RequestBody CardPackageModel cardPackageModel){
+    public ResponseEntity<Map<String, String>> createCardpackage(@RequestBody CardPackageModel cardPackageModel){
 
         cardPackageService.save(cardPackageModel);
 
@@ -33,7 +33,7 @@ public class CardPackageController {
     }
 
     @PostMapping("/api/post/delete/{id}/cardpackage")
-    public ResponseEntity<Map> deleteCardpackage(@PathVariable Integer id){
+    public ResponseEntity<Map<String, String>> deleteCardpackage(@PathVariable Integer id){
 
         cardPackageService.deleteById(id);
 
@@ -45,7 +45,7 @@ public class CardPackageController {
     }
 
     @PostMapping("/api/post/adddilemma/{dilemmaid}/{id}/cardpackage")
-    public ResponseEntity<Map> addDilemma(@PathVariable Integer dilemmaid, @PathVariable Integer id){
+    public ResponseEntity<Map<String, String>> addDilemma(@PathVariable Integer dilemmaid, @PathVariable Integer id){
 
         Optional<CardPackageModel> checkModel = cardPackageService.findById(id);
         Optional<DilemmaModel> checkDilemma = dilemmaService.findById(dilemmaid);
@@ -87,7 +87,7 @@ public class CardPackageController {
     }
 
     @PostMapping("/api/post/removedilemma/{dilemmaid}/{id}/cardpackage")
-    public ResponseEntity<Map> removeDilemma(@PathVariable Integer dilemmaid, @PathVariable Integer id){
+    public ResponseEntity<Map<String, String>> removeDilemma(@PathVariable Integer dilemmaid, @PathVariable Integer id){
 
         Optional<CardPackageModel> checkModel = cardPackageService.findById(id);
         Optional<DilemmaModel> checkDilemma = dilemmaService.findById(dilemmaid);

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class GameLobbyLogger {
 
-    private GameLobbyLoggerService service;
+    private final GameLobbyLoggerService service;
 
     public GameLobbyLogger(GameLobbyLoggerService service) {
         this.service = service;
