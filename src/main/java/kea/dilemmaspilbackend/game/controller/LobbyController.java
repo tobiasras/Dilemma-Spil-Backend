@@ -6,7 +6,7 @@ import kea.dilemmaspilbackend.game.model.GameLobby;
 import kea.dilemmaspilbackend.game.model.GameLobbyLogger;
 import kea.dilemmaspilbackend.game.model.Player;
 import kea.dilemmaspilbackend.game.model.persistmodel.GameLobbyPersist;
-import kea.dilemmaspilbackend.game.response.LobbyResponse;
+import kea.dilemmaspilbackend.game.model.response.LobbyResponse;
 import kea.dilemmaspilbackend.game.service.GameLobbyLoggerService;
 import kea.dilemmaspilbackend.game.service.GameService;
 import lombok.AllArgsConstructor;
