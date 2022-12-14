@@ -48,7 +48,7 @@ public class GameAnswersController {
         }
     }
     // uses the id from corresponding dilemma
-    @GetMapping("/api/get/findall/{id}/commentsdilemma")
+    @GetMapping("/api/get/findall/{id}/gameanswers")
     public ResponseEntity<Set<GameAnswersModel>> findAllForGameAnswers(@PathVariable() Integer id){
 
         Set<GameAnswersModel> all =  gameAnswersService.findAll();
