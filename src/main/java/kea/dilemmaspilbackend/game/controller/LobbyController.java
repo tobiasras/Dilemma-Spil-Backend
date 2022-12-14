@@ -1,13 +1,9 @@
 package kea.dilemmaspilbackend.game.controller;
 
 
-import kea.dilemmaspilbackend.dilemmas.model.CardPackageModel;
 import kea.dilemmaspilbackend.game.model.GameLobby;
-import kea.dilemmaspilbackend.game.model.GameLobbyLogger;
 import kea.dilemmaspilbackend.game.model.Player;
-import kea.dilemmaspilbackend.game.model.persistmodel.GameLobbyPersist;
 import kea.dilemmaspilbackend.game.model.response.LobbyResponse;
-import kea.dilemmaspilbackend.game.service.GameLobbyLoggerService;
 import kea.dilemmaspilbackend.game.service.GameService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -71,7 +67,7 @@ public class LobbyController {
 
         gameService.endGame(gameLobby);
 
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 
