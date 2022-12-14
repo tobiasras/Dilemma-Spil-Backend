@@ -1,4 +1,4 @@
-package kea.dilemmaspilbackend.dilemmas.repository.service;
+package kea.dilemmaspilbackend.dilemmas.service;
 
 import java.util.Optional;
 import java.util.Set;

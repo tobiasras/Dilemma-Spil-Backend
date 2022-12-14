@@ -13,6 +13,7 @@ public class Player {
     private String name;
     private boolean isReady;
     private List<RoundResponse> listOfRoundResponses;
+    
     private StudyField groupFieldOfStudy;
 
     public Player() {

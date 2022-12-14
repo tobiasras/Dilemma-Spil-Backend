@@ -68,12 +68,9 @@ public class LobbyController {
     @PostMapping("api/post/save/lobbyStats")
     public ResponseEntity saveStats(@RequestBody GameLobby gameLobby){
 
-        System.out.println(gameLobby);
+        System.out.println(gameLobby.getLobbyCode());
 
-
-        //GameLobbyPersist gameLobbyPersist = new GameLobbyPersist(gameLobby);
-
-        //gameLobbyLoggerService.save(gameLobbyPersist);
+        gameService.endGame(gameLobby);
 
         return new ResponseEntity(HttpStatus.OK);
     }

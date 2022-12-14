@@ -4,20 +4,32 @@ import kea.dilemmaspilbackend.dilemmas.model.CardPackageModel;
 import lombok.Data;
 import lombok.ToString;
 
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 @ToString
 @Data
 public class GameLobby {
+
+    private Date timeCreated;
     private String lobbyCode;
     private List<Player> playerList;
     private CardPackageModel cardPackage;
     private int currentRound;
     private int totalRounds;
 
+    public Date getTimeCreated() {
+        return timeCreated;
+    }
 
     public GameLobby(CardPackageModel cardPackage, Player player) {
+        this.timeCreated = Date.from(Instant.now());
+
         this.lobbyCode = createLobbyCode();
         this.playerList = new ArrayList<>();
         this.cardPackage = cardPackage;

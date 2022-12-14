@@ -3,7 +3,7 @@ package kea.dilemmaspilbackend.game.service;
 import kea.dilemmaspilbackend.dilemmas.model.CardPackageModel;
 import kea.dilemmaspilbackend.dilemmas.repository.CardPackageRepository;
 import kea.dilemmaspilbackend.dilemmas.repository.DilemmaRepository;
-import kea.dilemmaspilbackend.dilemmas.repository.service.CardPackageService;
+import kea.dilemmaspilbackend.dilemmas.service.CardPackageService;
 import kea.dilemmaspilbackend.game.model.GameLobby;
 import kea.dilemmaspilbackend.game.model.GameLobbyLogger;
 import kea.dilemmaspilbackend.game.model.Player;

@@ -1,7 +1,7 @@
 package kea.dilemmaspilbackend.game.service;
 
 import kea.dilemmaspilbackend.dilemmas.model.CardPackageModel;
-import kea.dilemmaspilbackend.dilemmas.repository.service.CardPackageService;
+import kea.dilemmaspilbackend.dilemmas.service.CardPackageService;
 import kea.dilemmaspilbackend.game.model.GameLobby;
 import kea.dilemmaspilbackend.game.model.GameLobbyLogger;
 import kea.dilemmaspilbackend.game.model.Player;
@@ -50,11 +50,12 @@ public class GameService {
     }
 
     // The endGame method saves the relevant statistical information from the gamelobby to the database and removes the gamelobby.
-    public void endGame(String lobbyCode) {
-        GameLobby gameLobby = gameRepository.getGameLobbyList().get(lobbyCode);
+    public void endGame(GameLobby gameLobby) {
         gameLobbyLogger.log(gameLobby);
-        removeGameLobby(lobbyCode);
+        removeGameLobby(gameLobby.getLobbyCode());
     }
+
+
 
     public void leaveGameLobby(Player player, String lobbyCode) {
         List<Player> playerList = gameRepository.getGameLobbyList().get(lobbyCode).getPlayerList();

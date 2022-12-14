@@ -1,6 +1,6 @@
 package kea.dilemmaspilbackend.game.controller;
 import kea.dilemmaspilbackend.dilemmas.model.CardPackageModel;
-import kea.dilemmaspilbackend.dilemmas.repository.service.CardPackageService;
+import kea.dilemmaspilbackend.dilemmas.service.CardPackageService;
 import kea.dilemmaspilbackend.game.model.GameLobby;
 import kea.dilemmaspilbackend.game.model.Player;
 import kea.dilemmaspilbackend.game.response.LobbyResponse;
@@ -61,6 +61,8 @@ class GameController {
         StartGameResponse startGameResponse = new StartGameResponse();
 
         GameLobby gameLobby = gameService.fetchGameLobbyFromLobbyCode(lobby);
+
+
 
         Optional<CardPackageModel> byId = cardService.findById(1);
 

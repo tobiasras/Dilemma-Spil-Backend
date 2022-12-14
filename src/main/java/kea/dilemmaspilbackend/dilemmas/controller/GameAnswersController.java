@@ -2,16 +2,14 @@ package kea.dilemmaspilbackend.dilemmas.controller;
 
 import kea.dilemmaspilbackend.dilemmas.model.DilemmaModel;
 import kea.dilemmaspilbackend.dilemmas.model.GameAnswersModel;
-import kea.dilemmaspilbackend.dilemmas.repository.service.DilemmaService;
-import kea.dilemmaspilbackend.dilemmas.repository.service.GameAnswersService;
+import kea.dilemmaspilbackend.dilemmas.service.DilemmaService;
+import kea.dilemmaspilbackend.dilemmas.service.GameAnswersService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Optional;
-import java.util.Set;
-
+import java.util.*;
+@CrossOrigin
 @RestController
 public class GameAnswersController {
 
@@ -23,10 +21,12 @@ public class GameAnswersController {
         this.gameAnswersService = gameAnswersService;
     }
 
+
+
+
     // uses the id from the relevant dilemma
     @PostMapping("/api/post/create/{id}/gameanswers")
     public ResponseEntity<String> createComment(@RequestBody GameAnswersModel gameAnswersModel, @PathVariable() Integer id){
-
         Optional<DilemmaModel> checkModel = dilemmaService.findById(id);
 
         if(checkModel.isPresent()){
@@ -67,4 +67,21 @@ public class GameAnswersController {
         }
         return ResponseEntity.ok(specificAnswerList);
     }
+
+
+    @PostMapping("/api/post/save/answers")
+    public ResponseEntity<String> saveAnswer(@RequestBody List<GameAnswersModel> list){
+
+        gameAnswersService.saveAnswers(list);
+
+        return new ResponseEntity<>("Game answers saved", HttpStatus.OK);
+    }
+
+
+
+
+
 }
+
+
+
