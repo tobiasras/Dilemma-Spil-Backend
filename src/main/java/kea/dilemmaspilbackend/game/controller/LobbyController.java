@@ -20,10 +20,12 @@ public class LobbyController {
 
     private GameService gameService;
 
-    @PostMapping ("api/post/create/lobby")
-    public ResponseEntity<GameLobby> createLobby(@RequestBody Player player, @RequestParam int cardPackageID){
+    @PostMapping ("api/post/create/lobby/{cardpackageId}")
+    public ResponseEntity<GameLobby> createLobby(@RequestBody Player player, @PathVariable int cardpackageId){
 
-        GameLobby gameLobby = gameService.createGameLobby(player, cardPackageID);
+        System.out.println(cardpackageId);
+
+        GameLobby gameLobby = gameService.createGameLobby(player, cardpackageId);
 
         return new ResponseEntity<>(gameLobby, HttpStatus.OK);
     }

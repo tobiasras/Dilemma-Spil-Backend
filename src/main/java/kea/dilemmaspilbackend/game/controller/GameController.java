@@ -52,9 +52,7 @@ class GameController {
 
         GameLobby gameLobby = gameService.fetchGameLobbyFromLobbyCode(lobby);
 
-
-
-        Optional<CardPackageModel> byId = cardService.findById(1);
+        Optional<CardPackageModel> byId = cardService.findById(gameLobby.getCardPackage().getId());
 
         CardPackageModel cardPackageModel = byId.orElse(null);
 
