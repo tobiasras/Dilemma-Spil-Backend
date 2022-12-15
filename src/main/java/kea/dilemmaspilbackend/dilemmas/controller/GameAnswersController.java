@@ -2,8 +2,6 @@ package kea.dilemmaspilbackend.dilemmas.controller;
 
 import kea.dilemmaspilbackend.dilemmas.model.DilemmaModel;
 import kea.dilemmaspilbackend.dilemmas.model.GameAnswersModel;
-import kea.dilemmaspilbackend.dilemmas.service.DilemmaService;
-import kea.dilemmaspilbackend.dilemmas.service.GameAnswersService;
 import org.springframework.http.HttpStatus;
 import kea.dilemmaspilbackend.dilemmas.service.DilemmaService;
 import kea.dilemmaspilbackend.dilemmas.service.GameAnswersService;

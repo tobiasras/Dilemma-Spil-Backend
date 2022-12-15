@@ -1,6 +1,5 @@
 package kea.dilemmaspilbackend;
 
-import kea.dilemmaspilbackend.test_utility.SqlScript;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
