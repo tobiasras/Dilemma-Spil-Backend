@@ -99,12 +99,5 @@ public class GameServiceTest {
         gameService.readyUp(player, lobbyCode);
         Assertions.assertTrue(gameRepository.getGameLobbyList().get(lobbyCode).getPlayerList().get(0).isReady());
     }
-    @Test
-    public void testGameLobbySave() {
-        Player player = new Player();
-        player.setGroupFieldOfStudy(DATAMATIKER);
-        player.setName("Thomas");
-        GameLobby gameLobby = gameService.createGameLobby(player, 1);
-        gameService.endGame(gameLobby.getLobbyCode());
-    }
+
 }
